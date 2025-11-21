@@ -1,257 +1,350 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Best–Bytes</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Best–Bytes</title>
 
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;700&family=DM+Sans:wght@300;400;700&family=Poppins:wght@300;400;600;700&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;700&family=DM+Sans:wght@300;400;700&family=Poppins:wght@300;500;700&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
 
-    <style>
-        :root {
-            /* DEFAULT THEME — will be replaced by JS */
-            --bg: #fffbe6;
-            --text: #000;
-            --card: #ffffff;
-            --accent: #3453DE;
-            --shadow: rgba(0, 0, 0, 0.15);
-            --header-font: "Pixelify Sans";
-            --body-font: "DM Sans";
-        }
+<style>
+/* -----------------------------
+   THEME VARIABLES
+-------------------------------*/
+:root {
+    --bg: #dcefff;
+    --text: #163047;
+    --muted: #4f6c84;
+    --accent: #3f92ff;
+    --card: rgba(255, 255, 255, 0.85);
+    --radius: 22px;
+    --shadow: 0 10px 28px rgba(0,0,0,0.15);
+    --font-title: "DM Sans";
+    --font-body: "DM Sans";
+    --transition: 0.45s ease;
+}
 
-        /* THEMES */
-        .theme-pixel {
-            --bg: #FFEC9A;
-            --text: #222;
-            --card: #fff;
-            --accent: #3453DE;
-            --header-font: "Pixelify Sans";
-            --body-font: "DM Sans";
-        }
+/* PIXEL THEME */
+.theme-pixel {
+    --bg: #ffe98f;
+    --text: #000;
+    --muted: #333;
+    --accent: #3246d6;
+    --card: #fff4c7;
+    --radius: 8px;
+    --shadow: none;
+    --font-title: "Pixelify Sans";
+    --font-body: "DM Sans";
+}
 
-        .theme-modern {
-            --bg: #f5f5f5;
-            --text: #111;
-            --card: #ffffff;
-            --accent: #0066ff;
-            --header-font: "Poppins";
-            --body-font: "Poppins";
-        }
+/* MODERN THEME */
+.theme-modern {
+    --bg: #f5f7fa;
+    --text: #101010;
+    --muted: #4a4a4a;
+    --accent: #0075ff;
+    --card: #ffffff;
+    --radius: 18px;
+    --shadow: 0 4px 18px rgba(0,0,0,0.1);
+    --font-title: "Poppins";
+    --font-body: "Poppins";
+}
 
-        .theme-neon {
-            --bg: #0a0a0f;
-            --text: #eaffff;
-            --card: #13131a;
-            --accent: #00eaff;
-            --header-font: "Orbitron";
-            --body-font: "DM Sans";
-        }
+/* NEON THEME */
+.theme-neon {
+    --bg: #060913;
+    --text: #00fefe;
+    --muted: #019ed2;
+    --accent: #00eaff;
+    --card: #101525;
+    --radius: 14px;
+    --shadow: 0 0 22px rgba(0,255,255,0.35);
+    --font-title: "Orbitron";
+    --font-body: "DM Sans";
+}
 
-        .theme-pastel {
-            --bg: #f7d8ff;
-            --text: #3d2b45;
-            --card: #ffffffaa;
-            --accent: #ff79c6;
-            --header-font: "Poppins";
-            --body-font: "DM Sans";
-        }
+/* BLUE PASTEL THEME */
+.theme-bluepastel {
+    --bg: #dcefff;
+    --text: #163047;
+    --muted: #4f6c84;
+    --accent: #3f92ff;
+    --card: rgba(255,255,255,0.85);
+    --radius: 22px;
+    --shadow: 0 10px 28px rgba(0,0,0,0.15);
+    --font-title: "DM Sans";
+    --font-body: "DM Sans";
+}
 
-        .theme-portfolio {
-            --bg: #ffffff;
-            --text: #1c1c1c;
-            --card: #f6f6f6;
-            --accent: #000000;
-            --header-font: "Poppins";
-            --body-font: "Poppins";
-        }
+/* PORTFOLIO THEME */
+.theme-portfolio {
+    --bg: #ffffff;
+    --text: #000;
+    --muted: #555;
+    --accent: #000;
+    --card: #efefef;
+    --radius: 4px;
+    --shadow: none;
+    --font-title: "Poppins";
+    --font-body: "Poppins";
+}
 
-        /* GLOBAL STYLES */
-        body {
-            margin: 0;
-            padding: 0;
-            background: var(--bg);
-            color: var(--text);
-            font-family: var(--body-font);
-            transition: 0.4s ease;
-        }
+/* -----------------------------
+   GLOBAL STYLE
+-------------------------------*/
+body {
+    margin: 0;
+    background: var(--bg);
+    font-family: var(--font-body);
+    color: var(--text);
+    transition: var(--transition);
+}
 
-        header {
-            padding: 1.5rem;
-            text-align: center;
-            font-family: var(--header-font);
-            font-size: 2rem;
-            font-weight: bold;
-            color: var(--text);
-            background: var(--card);
-            border-bottom: 4px solid var(--accent);
-            transition: 0.4s ease;
-        }
+header {
+    text-align: center;
+    background: white;
+    padding: 1.5rem;
+    font-size: 2.3rem;
+    font-family: var(--font-title);
+    border-bottom: 4px solid var(--accent);
+    transition: var(--transition);
+}
 
-        /* THEME SWITCHER */
-        .theme-switcher {
-            text-align: center;
-            margin: 1.5rem 0;
-        }
+.swipe-hint {
+    text-align: center;
+    opacity: .55;
+    margin-top: .6rem;
+    font-size: .95rem;
+    font-family: var(--font-body);
+}
 
-        .theme-switcher button {
-            padding: 10px 15px;
-            margin: 5px;
-            border: none;
-            background: var(--accent);
-            color: white;
-            font-weight: bold;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: 0.3s ease;
-        }
+/* INTRO */
+.intro {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 3rem;
+    padding: 3rem 1rem;
+}
 
-        .theme-switcher button:hover {
-            transform: translateY(-2px);
-            opacity: 0.9;
-        }
+.intro-text {
+    width: 360px;
+    background: var(--card);
+    padding: 2.2rem;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+}
 
-        /* INTRO */
-        .intro {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            padding: 2.5rem;
-            gap: 2rem;
-        }
+.intro-text h2 {
+    margin: 0;
+    font-family: var(--font-title);
+}
 
-        .intro-text {
-            flex: 1 1 350px;
-            max-width: 550px;
-            background: var(--card);
-            padding: 2rem;
-            border-radius: 20px;
-            box-shadow: 0 10px 20px var(--shadow);
-            transition: 0.4s;
-        }
+.intro-text p {
+    margin-top: 1rem;
+    font-size: 1.1rem;
+    line-height: 1.55rem;
+    color: var(--muted);
+}
 
-        .intro-text h2 {
-            margin: 0;
-            font-size: 2rem;
-        }
+.btn {
+    display: inline-block;
+    margin-top: 1.6rem;
+    background: var(--accent);
+    padding: 12px 20px;
+    color: white;
+    border-radius: var(--radius);
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s ease;
+}
 
-        .intro-text p {
-            margin-top: 1rem;
-            font-size: 1.1rem;
-        }
+.btn:hover {
+    opacity: 0.85;
+}
 
-        .btn {
-            padding: 12px 22px;
-            background: var(--accent);
-            color: white;
-            border-radius: 8px;
-            text-decoration: none;
-            display: inline-block;
-            font-weight: bold;
-            margin-top: 1.4rem;
-        }
+/* LOGO */
+.intro-image img {
+    width: 260px;
+    height: 260px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+}
 
-        .btn:hover { opacity: 0.85; }
+/* PROJECTS */
+.projects {
+    text-align: center;
+    padding: 2rem 1rem;
+}
 
-        .intro-image img {
-            max-width: 350px;
-            width: 100%;
-            animation: float 4s infinite ease-in-out;
-        }
+.project-card {
+    width: 240px;
+    background: var(--card);
+    padding: 1.5rem;
+    margin: 1.5rem auto;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+}
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
+.project-card img {
+    width: 90%;
+    border-radius: var(--radius);
+}
 
-        /* PROJECT SECTION */
-        .projects {
-            padding: 2rem;
-            text-align: center;
-        }
+/* THEME INDICATOR DOTS */
+.theme-dots {
+    text-align: center;
+    margin: 1rem 0 2rem 0;
+}
 
-        .project-card {
-            background: var(--card);
-            width: 240px;
-            padding: 1.5rem;
-            margin: 1.2rem auto;
-            border-radius: 18px;
-            box-shadow: 0 10px 20px var(--shadow);
-            transition: 0.3s ease;
-        }
+.theme-dots span {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    background: var(--muted);
+    margin: 0 5px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
 
-        .project-card:hover {
-            transform: scale(1.05);
-        }
+.theme-dots .active {
+    background: var(--accent);
+}
 
-        .project-card img {
-            width: 90%;
-            border-radius: 10px;
-        }
+/* FOOTER */
+footer {
+    margin-top: 3rem;
+    background: white;
+    padding: 2rem;
+    border-top: 4px solid var(--accent);
+    text-align: center;
+    transition: var(--transition);
+}
 
-        /* FOOTER */
-        footer {
-            text-align: center;
-            padding: 2rem;
-            background: var(--card);
-            margin-top: 2rem;
-            border-top: 4px solid var(--accent);
-        }
-    </style>
+.social-links a {
+    margin: 0 .4rem;
+    font-weight: bold;
+    color: var(--accent);
+    text-decoration: none;
+}
+
+footer img {
+    width: 45px;
+    border-radius: 50%;
+}
+</style>
 </head>
+<body class="theme-bluepastel">
 
-<body class="theme-pixel">
+<header>BEST–BYTES</header>
+<div class="swipe-hint">← Swipe left/right or use keyboard arrows →</div>
 
-    <header>BEST–BYTES</header>
-
-    <!-- THEME SWITCHER -->
-    <div class="theme-switcher">
-        <button onclick="setTheme('pixel')">Pixel</button>
-        <button onclick="setTheme('modern')">Modern</button>
-        <button onclick="setTheme('neon')">Neon</button>
-        <button onclick="setTheme('pastel')">Pastel</button>
-        <button onclick="setTheme('portfolio')">Portfolio</button>
+<section class="intro">
+    <div class="intro-text">
+        <h2>Welcome to Best–Bytes</h2>
+        <h2>Bits of learning, bytes of creativity.</h2>
+        <p>
+            I'm a digital jack-of-all-trades, picking up new skills one step at a time and sharing what I build along the
+            way. Whether it's code experiments, small tools, or creative projects, everything you see here is made on my
+            laptop and shared without filters — just raw progress and curiosity.
+        </p>
+        <a class="btn" href="#projects">Explore Projects</a>
     </div>
 
-    <!-- INTRO -->
-    <section class="intro">
-        <div class="intro-text">
-            <h2>Welcome to Best–Bytes</h2>
-            <h2>A Blend of Every Style</h2>
-            <p>
-                This website mixes multiple design worlds — pixel retro, minimal modern, neon cyberpunk, pastel creative, and portfolio clean.
-                Switch themes. Explore vibes. Enjoy the chaos.
-            </p>
-            <a class="btn" href="#projects">Explore</a>
-        </div>
+    <div class="intro-image">
+        <img src="LOGO.png" alt="Profile Picture">
+    </div>
+</section>
 
-        <div class="intro-image">
-            <img src="LOGO.jpg" alt="Logo">
-        </div>
-    </section>
+<section class="projects" id="projects">
+    <h2 style="font-family: var(--font-title);">TOP PROJECTS</h2>
+    <div class="project-card">
+        <img src="image 2.png" alt="">
+        <h3>Shadow Runner</h3>
+        <a class="btn" href="">Download</a>
+    </div>
+</section>
 
-    <!-- PROJECTS -->
-    <section class="projects" id="projects">
-        <h2>Top Projects</h2>
+<!-- THEME INDICATOR DOTS -->
+<div class="theme-dots">
+    <span data-index="0"></span>
+    <span data-index="1"></span>
+    <span data-index="2"></span>
+    <span data-index="3"></span>
+    <span data-index="4"></span>
+</div>
 
-        <div class="project-card">
-            <img src="image 2.png" alt="Shadow Runner">
-            <h3>Shadow Runner</h3>
-            <a class="btn" href="https://github.com/Best-bytes/Website/releases/download/latest/Shadow.runner.apk">Download</a>
-        </div>
-    </section>
+<footer>
+    <div class="social-links">
+        <a href="https://github.com/Best-bytes">GitHub</a> |
+        <a href="https://youtube.com/@Best-bytess">YouTube</a> |
+        <a href="https://instagram.com/best_bytess">Instagram</a>
+        <a href="/"><img src="image 1.png"></a>
+    </div>
+    <p>© 2025 Best–Bytes</p>
+</footer>
 
-    <!-- FOOTER -->
-    <footer>
-        © 2025 Best–Bytes | Exploring Every Style
-    </footer>
+<script>
+// THEMES
+const themes = ["pixel", "modern", "neon", "bluepastel", "portfolio"];
+let index = 3; // default blue pastel
 
-    <!-- JS: THEME SWITCHER -->
-    <script>
-        function setTheme(theme) {
-            document.body.className = "theme-" + theme;
-        }
-    </script>
+function applyTheme() {
+    document.body.className = "theme-" + themes[index];
+    // update indicator dots
+    document.querySelectorAll(".theme-dots span").forEach((dot,i)=>{
+        dot.classList.toggle("active", i===index);
+    });
+}
 
+// SWIPE
+let startX = 0, startY = 0, isScrolling = false;
+
+document.addEventListener("touchstart", e=>{
+    startX = e.touches[0].clientX;
+    startY = e.touches[0].clientY;
+    isScrolling = false;
+});
+
+document.addEventListener("touchmove", e=>{
+    const dx = e.touches[0].clientX - startX;
+    const dy = e.touches[0].clientY - startY;
+    if(Math.abs(dy) > Math.abs(dx)) { isScrolling=true; return; }
+    e.preventDefault();
+},{passive:false});
+
+document.addEventListener("touchend", e=>{
+    if(isScrolling) return;
+    const dx = e.changedTouches[0].clientX - startX;
+    if(dx > 70) prevTheme();
+    else if(dx < -70) nextTheme();
+});
+
+// KEYBOARD NAVIGATION
+document.addEventListener("keydown", e=>{
+    if(e.key==="ArrowLeft") prevTheme();
+    if(e.key==="ArrowRight") nextTheme();
+});
+
+// DOTS NAVIGATION
+document.querySelectorAll(".theme-dots span").forEach(dot=>{
+    dot.addEventListener("click", ()=>{
+        index = parseInt(dot.dataset.index);
+        applyTheme();
+    });
+});
+
+// PREV/NEXT FUNCTIONS
+function prevTheme(){ index=(index-1+themes.length)%themes.length; applyTheme(); }
+function nextTheme(){ index=(index+1)%themes.length; applyTheme(); }
+
+// INIT
+applyTheme();
+</script>
 </body>
 </html>
